@@ -8,10 +8,23 @@ import os, sys
 PACKAGE_NAME = 'futura_image'
 VERSION = '0.0.1'
 
+packages = []
+root_dir = os.path.dirname(__file__)
+if root_dir:
+    os.chdir(root_dir)
+
+for dirpath, dirnames, filenames in os.walk('futura_image'):
+    # Ignore dirnames that start with '.'
+    if '__init__.py' in filenames:
+        pkg = dirpath.replace(os.path.sep, '.')
+        if os.path.altsep:
+            pkg = pkg.replace(os.path.altsep, '.')
+        packages.append(pkg)
+
 setup(
     name=PACKAGE_NAME,
     version=VERSION,
-    #packages=packages,
+    packages=packages,
     author="P. James Joyce",
     author_email="pjamesjoyce@gmail.com",
     license="BSD 3-Clause License",
