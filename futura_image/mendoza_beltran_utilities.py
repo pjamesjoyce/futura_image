@@ -19,7 +19,7 @@ from pprint import pprint
 import os
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-image_filename = os.path.join(dir_path, 'Image variable names.xlsx')
+image_filename = os.path.join(dir_path, 'assets/Image variable names.xlsx')
 
 image_variable_names = pd.read_excel(image_filename)
 REGIONS = image_variable_names['Regions'].dropna().values

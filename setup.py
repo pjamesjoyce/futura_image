@@ -21,6 +21,17 @@ for dirpath, dirnames, filenames in os.walk('futura_image'):
             pkg = pkg.replace(os.path.altsep, '.')
         packages.append(pkg)
 
+def package_files(directory):
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.join('..', path, filename))
+    return paths
+
+
+my_package_files = []
+my_package_files.extend(package_files(os.path.join('futura_image', 'assets')))
+
 setup(
     name=PACKAGE_NAME,
     version=VERSION,
@@ -28,7 +39,7 @@ setup(
     author="P. James Joyce",
     author_email="pjamesjoyce@gmail.com",
     license="BSD 3-Clause License",
-    #package_data={'futura': my_package_files},
+    package_data={'futura_image': my_package_files},
     entry_points={
         'futura_plugins': [
             'image = futura_image'
